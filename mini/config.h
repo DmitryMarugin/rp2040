@@ -7,6 +7,7 @@
 #pragma weak backing_store_lock
 #pragma weak backing_store_unlock
 
+#define RP2040_BOOTLOADER_DOUBLE_TAP_RESET // Activates the double-tap behavior
 /*
  * Feature disable options
  *  These options are also useful to firmware size reduction.

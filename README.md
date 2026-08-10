@@ -7,6 +7,12 @@ QMK USB Converter based on RP2040
   <img src="DOC/Appearance.jpg" width="500" alt="Баннер">
 </p>
 
+
+# Assembly
+<p align="center">
+  <img src="DOC/Scheme.bmp" width="500" alt="Баннер">
+</p>
+
 # Build
 1. git clone https://github.com/qmk/qmk_firmware.git
 2. cd qmk_firmware

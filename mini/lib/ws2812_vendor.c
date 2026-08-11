@@ -240,7 +240,6 @@ bool ws2812_init(void) {
 #else
     WS2812_DMA_CHANNEL = dmaChannelAlloc(RP_DMA_CHANNEL_ID_ANY, RP_DMA_PRIORITY_WS2812, (rp_dmaisr_t)ws2812_dma_callback, NULL);
 #endif
-
     dmaChannelEnableInterruptX(WS2812_DMA_CHANNEL);
     dmaChannelSetDestinationX(WS2812_DMA_CHANNEL, (uint32_t)&pio->txf[STATE_MACHINE]);
 
@@ -272,7 +271,7 @@ static inline void sync_ws2812_transfer(void) {
     busy_wait_until(LAST_TRANSFER);
 }
 
-void ws2812_setleds(LED_TYPE* ledarray, uint16_t leds) {
+void ws2812_setleds(rgb_led_t* ledarray, uint16_t leds) {
     static bool is_initialized = false;
     if (unlikely(!is_initialized)) {
         is_initialized = ws2812_init();

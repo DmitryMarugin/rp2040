@@ -16,7 +16,7 @@ QMK USB Converter based on RP2040
 # Build
 1. git clone https://github.com/qmk/qmk_firmware.git
 2. cd qmk_firmware
-3. git checkout --force 0.25.0
+3. git checkout --force 0.26.0
 4. qmk doctor
 5. cp keyboards/rp2040/mini/lib/ws2812_vendor.c platforms/chibios/drivers/vendor/RP/RP2040/ws2812_vendor.c
 6. cd keyboards

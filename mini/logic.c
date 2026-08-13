@@ -50,9 +50,9 @@ void keyboard_post_init_user(void)
 
 void matrix_scan_user(void)
 {
+    //Моргаем подсветкой пока Leader Key активна
     if (leader_sequence_active())
     {
-        //Подсвечиваем нашу Leader Key
         if (timer_elapsed(blink_timer) < 50)
         {
             rgblight_enable();

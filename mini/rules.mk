@@ -1,6 +1,7 @@
 # Bootloader selection
 BOOTLOADER = rp2040
 LTO = yes
+VIRTSER_ENABLE = no
 
 SRC += matrix.c c1_main.c c1_usbh.c tusb_os_custom.c
 SRC += logic.c display.c 

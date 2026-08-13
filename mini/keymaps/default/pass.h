@@ -1,0 +1,1 @@
+#define MY_SECRET_PASS "MY_SECRET_PASS\n"

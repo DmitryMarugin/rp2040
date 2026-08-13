@@ -168,6 +168,7 @@
                 {"matrix": [11, 1], "x": 18.5, "y": 4,"label":"1"},
                 {"matrix": [11, 2], "x": 19.5, "y": 4,"label":"2"},
                 {"matrix": [11, 3], "x": 20.5, "y": 4,"label":"3"},
+                {"matrix": [11, 0], "x": 21.5, "y": 5,"label":"Enter"},
 
                 {"matrix": [28, 0], "x": 0, "y": 5,"label":"LCtrl"},
                 {"matrix": [28, 3], "x": 1, "y": 5,"label":"Win"},
@@ -181,8 +182,8 @@
                 {"matrix": [10, 1], "x": 16.25, "y": 5,"label":"Down"},
                 {"matrix": [9, 7],  "x": 17.25, "y": 5,"label":"Right"},
                 {"matrix": [12, 2], "x": 18.5, "y": 5, "w": 2,"label":"0"},
-                {"matrix": [12, 3], "x": 20.5, "y": 5,"label":"."},
-                {"matrix": [11, 0], "x": 21.5, "y": 5,"label":"Enter"}                
+                
+                {"matrix": [12, 3], "x": 20.5, "y": 5,"label":"."}
             ]
         }
     }

@@ -2,6 +2,7 @@
 #include "my_keycodes.h"
 #include "display.h"
 #include "musical_notes.h"
+#include "pass.h"
 extern audio_config_t audio_config;
 
 void layer_move_step(bool);
@@ -192,6 +193,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
             PLAY_SONG(kc_no_beep);
             return true;
         }
+
+        case KC_P:
+            if (record->event.pressed) {
+                if (get_mods() & MOD_BIT(KC_LALT) && get_mods() & MOD_BIT(KC_LCTL) && get_mods() & MOD_BIT(KC_LSFT)) // KC_LALT|KC_LCTL|
+                {
+                    del_mods(MOD_MASK_CSA);
+                    SEND_STRING(MY_SECRET_PASS);
+                } else {
+                    // если не нажаты модифиаторы, то обрабатываем как обычно
+                    return true;
+                }
+                return false; // И дальше не посылаем код клавиши.
+            } else {
+                // А вот если отпустили, то даем это дело обработать
+                return true;
+            }
+
         default:
             return true;
     }

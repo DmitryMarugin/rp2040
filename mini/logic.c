@@ -29,27 +29,32 @@ static uint16_t blink_timer;
 /*-----------------------------------------
             Lighting Layers
 -----------------------------------------*/
-const rgblight_segment_t PROGMEM rgb_color1[] = RGBLIGHT_LAYER_SEGMENTS({0, 1, HSV_GREEN});
-const rgblight_segment_t PROGMEM rgb_color2[] = RGBLIGHT_LAYER_SEGMENTS({0, 1, HSV_BLUE});
-const rgblight_segment_t PROGMEM rgb_color3[] = RGBLIGHT_LAYER_SEGMENTS({0, 1, HSV_CYAN});
-const rgblight_segment_t PROGMEM rgb_color4[] = RGBLIGHT_LAYER_SEGMENTS({0, 1, HSV_YELLOW});
-const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(rgb_color1,rgb_color2,rgb_color3,rgb_color4);
+#ifdef RGBLIGHT_ENABLE
+    const rgblight_segment_t PROGMEM rgb_color1[] = RGBLIGHT_LAYER_SEGMENTS({0, 1, HSV_GREEN});
+    const rgblight_segment_t PROGMEM rgb_color2[] = RGBLIGHT_LAYER_SEGMENTS({0, 1, HSV_BLUE});
+    const rgblight_segment_t PROGMEM rgb_color3[] = RGBLIGHT_LAYER_SEGMENTS({0, 1, HSV_CYAN});
+    const rgblight_segment_t PROGMEM rgb_color4[] = RGBLIGHT_LAYER_SEGMENTS({0, 1, HSV_YELLOW});
+    const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(rgb_color1,rgb_color2,rgb_color3,rgb_color4);
+#endif
 
 void keyboard_post_init_user(void)
 {
     clicky_off();
-    rgblight_enable_noeeprom();
-    rgblight_sethsv_noeeprom(HSV_CYAN);
-    //rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_SWIRL);
-    //rgblight_mode_noeeprom(RGBLIGHT_MODE_RGB_TEST);
-    // Enable the LED layers
-    rgblight_layers = my_rgb_layers;
-    // oled_write_P(PSTR("Default\n"), false);
+    #ifdef RGBLIGHT_ENABLE
+        rgblight_enable_noeeprom();
+        rgblight_sethsv_noeeprom(HSV_CYAN);
+        //rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_SWIRL);
+        //rgblight_mode_noeeprom(RGBLIGHT_MODE_RGB_TEST);
+        // Enable the LED layers
+        rgblight_layers = my_rgb_layers;
+        // oled_write_P(PSTR("Default\n"), false);
+        #endif
     // PLAY_SONG(macro_end_beep); 
 }
 
 void matrix_scan_user(void)
 {
+    #ifdef RGBLIGHT_ENABLE
     //Моргаем подсветкой пока Leader Key активна
     if (leader_sequence_active())
     {
@@ -67,15 +72,17 @@ void matrix_scan_user(void)
             blink_timer = timer_read();
         }
     }
+    #endif
 }
 
 layer_state_t layer_state_set_user(layer_state_t state)
 {
-    rgblight_set_layer_state(0, layer_state_cmp(state, _ONE));
-    rgblight_set_layer_state(1, layer_state_cmp(state, _TWO));
-    rgblight_set_layer_state(2, layer_state_cmp(state, _THREE));
-    rgblight_set_layer_state(3, layer_state_cmp(state, _FOUR));
-
+    #ifdef RGBLIGHT_ENABLE
+        rgblight_set_layer_state(0, layer_state_cmp(state, _ONE));
+        rgblight_set_layer_state(1, layer_state_cmp(state, _TWO));
+        rgblight_set_layer_state(2, layer_state_cmp(state, _THREE));
+        rgblight_set_layer_state(3, layer_state_cmp(state, _FOUR));
+    #endif
 
     switch (get_highest_layer(state))
     {
@@ -275,7 +282,9 @@ void leader_end_user(void)
     {
         PLAY_SONG(leader_fail_song);
     }
-    rgblight_enable();
+    #ifdef RGBLIGHT_ENABLE
+        rgblight_enable();
+    #endif
 }
 
 /*-----------------------------------------*

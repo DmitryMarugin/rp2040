@@ -26,8 +26,8 @@ OLED_TRANSPORT = i2c
 # SRC += analog.c
 
 # WS2812 RGB LED
-RGBLIGHT_ENABLE = yes
+RGBLIGHT_ENABLE = no
 WS2812_DRIVER = vendor
-#WS2812_DRIVER = pwm #bitbang
+# WS2812_DRIVER = pwm #bitbang
 
 BACKLIGHT_ENABLE = no
